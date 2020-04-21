@@ -4,17 +4,23 @@ from json import loads
 import csv
 import os.path
 
+# The 'data/pdusers.csv' file contains a list of 50 records of fictitious users to be loaded in a Pager Duty account
+# with the current structure of the record: <name>, <email>, <role>
+# Upon a successful creation of a record in Pager Duty account, the returned user ID is appended to the
+# corresponding record of the csv file, making the record structure as:<name>, <email>, <role>, <id>
+# The use a csv file having an id on the fourth position of any of the records,
+# will result in updating those user records into the Pager Duty account
 my_path = os.path.abspath(os.path.dirname(__file__))
 path = os.path.join(my_path, "data/pdusers.csv")
 print (path)
 
 # Want to generate REST or Events API keys?
 # Check here: https://support.pagerduty.com/docs/generating-api-keys
+#PDAccountAccessKey = '***************jds2K'
 PDAccountAccessKey = '5689dh3Ak8VkSq-jds2K'
 
 # Update to match your PagerDuty email address
 PD_ACCT_OWNER_EMAIL = 'cristian.balan@augmenthor.com'
-
 
 def create_or_update_users_from_csv():
     new_file_lines = []
