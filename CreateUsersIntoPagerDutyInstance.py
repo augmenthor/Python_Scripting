@@ -16,11 +16,11 @@ print (path)
 
 # Want to generate REST or Events API keys?
 # Check here: https://support.pagerduty.com/docs/generating-api-keys
-#PDAccountAccessKey = '***************jds2K'
-PDAccountAccessKey = '5689dh3Ak8VkSq-jds2K'
+# Replace it with a valid PD access key
+PDAccountAccessKey = '***************jds2K'
 
 # Update to match your PagerDuty email address
-PD_ACCT_OWNER_EMAIL = 'cristian.balan@augmenthor.com'
+PD_ACCT_OWNER_EMAIL = '**************@augmenthor.com'
 
 def create_or_update_users_from_csv():
     new_file_lines = []

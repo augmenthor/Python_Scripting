@@ -1,5 +1,6 @@
 import boto3
 
+# Update to match a locally stored AWS profile
 session = boto3.session.Session(profile_name='augmenthor')
 ec2_rsrc = session.resource('ec2')
 ec2_instance_id=None
@@ -16,7 +17,9 @@ s3_rsrc= session.resource('s3')
 
 sns_clnt = session.client('sns')
 sns_topic_arn =None
-sns_subscription_pd_endpoint = "https://events.pagerduty.com/integration/538c44d3d1924d35b3519bf8b5b145f3/enqueue"
+# Update to match a valid endpoint
+sns_subscription_pd_endpoint = "https://events.pagerduty.com/integration/********************************/enqueue"
+
 sns_subscription_pd_protocol = 'HTTPS'
 sns_subscription_arn =None
 
