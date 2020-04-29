@@ -17,10 +17,11 @@ print (path)
 # Want to generate REST or Events API keys?
 # Check here: https://support.pagerduty.com/docs/generating-api-keys
 # Replace it with a valid PD access key
-PDAccountAccessKey = '***************jds2K'
+#PDAccountAccessKey = '***************jds2K'
+PDAccountAccessKey ='SwEYWx-i3x24JMZhThxt'
 
 # Update to match your PagerDuty email address
-PD_ACCT_OWNER_EMAIL = '**************@augmenthor.com'
+PD_ACCT_OWNER_EMAIL = 'cristian.i.balan@icloud.com'
 
 def create_or_update_users_from_csv():
     new_file_lines = []
@@ -92,7 +93,7 @@ def update_user(list):
         print('Status Code: {code}'.format(code=r.status_code))
         print(r.json())
     except:
-        print ("Error processing the creaate_user's PUT request")
+        print ("Error processing the create_user's PUT request")
 
 
 if __name__ == '__main__':

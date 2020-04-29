@@ -15,30 +15,17 @@ stress -c 1200 -i 1200 -d 1200 -t 300"""
 
 s3_rsrc= session.resource('s3')
 
-sns_clnt = session.client('sns')
-sns_topic_arn =None
-# Update to match a valid endpoint
-sns_subscription_pd_endpoint = "https://events.pagerduty.com/integration/********************************/enqueue"
-
-sns_subscription_pd_protocol = 'HTTPS'
-sns_subscription_arn =None
-
 cloudwatch_clnt=session.client('cloudwatch')
 
 
 def workflow():
-    #CloudWatch to pagerDuty Topic and Subscription creation
-    sns_topic_arn=create_sns_topic("CloudWatch-to-PagerDuty")
-    print("sns_topic_arn: {}".format(sns_topic_arn))
-    sns_subscription_arn= create_sns_subcription_endpoint(sns_topic_arn)
-    print("sns_subscription_arn: {}".format(sns_subscription_arn))
-    # S3 bucket creation
-    create_s3_bucket("augmenthor-pd")
     # EC2 instance creation
     ec2_instance_id=create_ec2()
     print("ec2_instance_id: {}".format(ec2_instance_id))
     # CloudWatch Metric Alarm
     create_cloudwatch_metric_alarm(ec2_instance_id)
+    # S3 bucket creation
+    #create_s3_bucket("augmenthor-pd")
     # To terminate the EC2 instance programatically uncomment use the following function
     # terminate_ec2(ec2_instance_id)
 
@@ -63,33 +50,10 @@ def create_s3_bucket(bucketname):
     try:
         response = s3_rsrc.create_bucket(
             ACL='public-read-write',
-            Bucket=bucketname,
-            CreateBucketConfiguration={'LocationConstraint': 'us-east-1'}
+            Bucket=bucketname
+            #,CreateBucketConfiguration={'LocationConstraint': 'us-east-1'}
         )
         print(response)
-    except Exception as error:
-        print(error)
-
-
-def create_sns_topic(topicname):
-    # create an SNS topic
-    try:
-        response = sns_clnt.create_topic(Name=topicname)
-        return response['TopicArn']
-    except Exception as error:
-        print(error)
-
-
-def create_sns_subcription_endpoint(snstopicarn):
-    # Subcribe to a PD endpoint (previously created in PD's admin console)
-    try:
-        response = sns_clnt.subscribe(
-            TopicArn=snstopicarn,
-            Protocol=sns_subscription_pd_protocol,
-            Endpoint=sns_subscription_pd_endpoint,
-            ReturnSubscriptionArn=True
-        )
-        return response['SubscriptionArn']
     except Exception as error:
         print(error)
 
@@ -120,6 +84,7 @@ def create_cloudwatch_metric_alarm(ec2instnceid):
                 },
             ]
         )
+        print(response)
     except Exception as error:
         print(error)
 
