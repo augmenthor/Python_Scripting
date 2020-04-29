@@ -25,7 +25,7 @@ def workflow():
     # CloudWatch Metric Alarm
     create_cloudwatch_metric_alarm(ec2_instance_id)
     # S3 bucket creation
-    #create_s3_bucket("augmenthor-pd")
+    create_s3_bucket("augmenthor-pd")
     # To terminate the EC2 instance programatically uncomment use the following function
     # terminate_ec2(ec2_instance_id)
 

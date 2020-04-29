@@ -158,7 +158,7 @@ if __name__ == '__main__':
     # - an escalation policy for a single team, a new service
     # - a new service which will create alerts and incidents
     # - a new integration with AWS CloudWatch for the service created
-    ep_team_id="PJKUNJK"
+    ep_team_id="PX7BN8L"
     service_subdomain="cbalan"
     ik=create_integration(create_service(create_escalation_policy(ep_team_id)), service_subdomain)
 

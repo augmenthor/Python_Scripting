@@ -11,7 +11,7 @@ import os.path
 # The use a csv file having an id on the fourth position of any of the records,
 # will result in updating those user records into the Pager Duty account
 my_path = os.path.abspath(os.path.dirname(__file__))
-path = os.path.join(my_path, "data/pdusers.csv")
+path = os.path.join(my_path, "data/pduser.csv")
 print (path)
 
 # Want to generate REST or Events API keys?
